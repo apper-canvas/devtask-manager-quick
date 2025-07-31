@@ -1,7 +1,24 @@
-import { useState } from "react"
+import { useState, useContext } from "react"
 import NavigationItem from "@/components/molecules/NavigationItem"
 import ApperIcon from "@/components/ApperIcon"
+import Button from "@/components/atoms/Button"
+import { AuthContext } from "@/App"
 
+const LogoutButton = () => {
+  const { logout } = useContext(AuthContext);
+  
+  return (
+    <Button
+      onClick={logout}
+      variant="ghost"
+      size="sm"
+      className="w-full text-gray-400 hover:text-white hover:bg-gray-700/50 justify-start"
+    >
+      <ApperIcon name="LogOut" size={16} className="mr-2" />
+      Logout
+    </Button>
+  );
+};
 const Sidebar = () => {
   const [isMobileOpen, setIsMobileOpen] = useState(false)
 
@@ -50,11 +67,12 @@ const Sidebar = () => {
           </NavigationItem>
         </nav>
         
-        <div className="p-4 border-t border-gray-600">
-          <div className="text-xs text-gray-500">
+<div className="p-4 border-t border-gray-600">
+          <div className="text-xs text-gray-500 mb-3">
             <p className="mb-1">Developer Tools</p>
             <p>Stay focused, ship code</p>
           </div>
+          <LogoutButton />
         </div>
       </aside>
 
@@ -91,11 +109,12 @@ const Sidebar = () => {
           </NavigationItem>
         </nav>
         
-        <div className="p-4 border-t border-gray-600">
-          <div className="text-xs text-gray-500">
+<div className="p-4 border-t border-gray-600">
+          <div className="text-xs text-gray-500 mb-3">
             <p className="mb-1">Developer Tools</p>
             <p>Stay focused, ship code</p>
           </div>
+          <LogoutButton />
         </div>
       </aside>
     </>
