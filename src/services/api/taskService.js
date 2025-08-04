@@ -48,12 +48,12 @@ class TaskService {
         throw new Error(response.message);
       }
 
-      // Map database fields to UI expected format
+// Map database fields to UI expected format
       return response.data.map(task => ({
         Id: task.Id,
         title: task.title_c || task.Name || '',
         description: task.description_c || '',
-        projectId: task.projectId_c || '',
+        projectId: task.projectId_c ? parseInt(task.projectId_c) : null,
         priority: task.priority_c || 'medium',
         status: task.status_c || 'todo',
         createdAt: task.createdAt_c || task.CreatedOn,
@@ -110,11 +110,11 @@ class TaskService {
 
       // Map database fields to UI expected format
       const task = response.data;
-      return {
+return {
         Id: task.Id,
         title: task.title_c || task.Name || '',
         description: task.description_c || '',
-        projectId: task.projectId_c || '',
+        projectId: task.projectId_c ? parseInt(task.projectId_c) : null,
         priority: task.priority_c || 'medium',
         status: task.status_c || 'todo',
         createdAt: task.createdAt_c || task.CreatedOn,
@@ -176,12 +176,12 @@ class TaskService {
         }
         
         if (successfulRecords.length > 0) {
-          const task = successfulRecords[0].data;
+const task = successfulRecords[0].data;
           return {
             Id: task.Id,
             title: task.title_c || task.Name || '',
             description: task.description_c || '',
-            projectId: task.projectId_c || '',
+            projectId: task.projectId_c ? parseInt(task.projectId_c) : null,
             priority: task.priority_c || 'medium',
             status: task.status_c || 'todo',
             createdAt: task.createdAt_c || task.CreatedOn,
@@ -245,12 +245,12 @@ class TaskService {
         }
         
         if (successfulUpdates.length > 0) {
-          const task = successfulUpdates[0].data;
+const task = successfulUpdates[0].data;
           return {
             Id: task.Id,
             title: task.title_c || task.Name || '',
             description: task.description_c || '',
-            projectId: task.projectId_c || '',
+            projectId: task.projectId_c ? parseInt(task.projectId_c) : null,
             priority: task.priority_c || 'medium',
             status: task.status_c || 'todo',
             createdAt: task.createdAt_c || task.CreatedOn,

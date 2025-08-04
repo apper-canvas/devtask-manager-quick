@@ -87,7 +87,7 @@ const handleTaskDetailsUpdated = (updatedTask) => {
 // Filter out tasks that reference deleted projects
   const validTasks = tasks.filter(task => {
     if (!task.projectId) return true
-    return projects.some(project => project.Id === task.projectId)
+    return projects.some(project => project.Id == task.projectId)
   })
 
   const filteredTasks = validTasks.filter(task => {
@@ -133,7 +133,7 @@ const handleTaskDetailsUpdated = (updatedTask) => {
           >
 <option value="all">All Projects ({validTasks.length})</option>
             {projects.map(project => {
-              const projectTaskCount = validTasks.filter(task => task.projectId === project.Id).length
+              const projectTaskCount = validTasks.filter(task => task.projectId == project.Id).length
               return (
                 <option key={project.Id} value={project.Id}>
                   {project.name} ({projectTaskCount})
