@@ -30,10 +30,10 @@ const TaskDetailsModal = ({ isOpen, onClose, task, onTaskUpdated, onTaskDeleted 
 
   useEffect(() => {
     if (task) {
-      setFormData({
+setFormData({
         title: task.title || "",
         description: task.description || "",
-        projectId: task.projectId || "",
+        projectId: task.projectId ? task.projectId.toString() : "",
         priority: task.priority || "medium",
         status: task.status || "todo",
         gitBranch: task.gitBranch || "",
@@ -116,10 +116,10 @@ const handleSetActive = async () => {
   };
 
 const handleCancel = () => {
-    setFormData({
+setFormData({
       title: task.title || "",
       description: task.description || "",
-      projectId: task.projectId || "",
+      projectId: task.projectId ? task.projectId.toString() : "",
       priority: task.priority || "medium",
       status: task.status || "todo",
       gitBranch: task.gitBranch || "",
@@ -278,10 +278,10 @@ onClick={handleSetActive}
                     <label className="block text-sm font-medium text-gray-300 mb-2">
                       Project
                     </label>
-                    <Select name="projectId" value={formData.projectId} onChange={handleChange}>
+<Select name="projectId" value={formData.projectId} onChange={handleChange}>
                       <option value="">Select a project...</option>
                       {projects.map(project => (
-                        <option key={project.Id} value={project.Id}>
+                        <option key={project.Id} value={project.Id.toString()}>
                           {project.name}
                         </option>
                       ))}
